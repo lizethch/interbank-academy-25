@@ -1,66 +1,114 @@
-# Reto Técnico: Procesamiento de Transacciones Bancarias (CLI)
+# retotecnico-cobol
+ Procesador de Transacciones Bancarias (CLI)
 
-## Objetivo:
+🚀 Introducción
 
-Desarrolla una aplicación de línea de comandos (CLI) que procese un archivo CSV con transacciones bancarias y genere un reporte que incluya:
+Este proyecto implementa una aplicación de línea de comandos (CLI) que procesa transacciones bancarias desde un archivo CSV y genera un reporte detallado. El propósito de este reto técnico es demostrar habilidades en procesamiento de datos y desarrollo de aplicaciones de consola, enfocándose en la manipulación eficiente de datos financieros.
 
-- **Balance Final:**  
-  Suma de los montos de las transacciones de tipo "Crédito" menos la suma de los montos de las transacciones de tipo "Débito".
+La aplicación analiza las transacciones, calculando el balance final (sumando créditos y restando débitos), identificando la transacción de mayor monto y contabilizando las transacciones según su tipo. Este tipo de herramienta podría ser útil en entornos financieros para el análisis rápido de movimientos bancarios.
 
-- **Transacción de Mayor Monto:**  
-  Identificar el ID y el monto de la transacción con el valor más alto.
+⚙️ Instrucciones de Ejecución
 
-- **Conteo de Transacciones:**  
-  Número total de transacciones para cada tipo ("Crédito" y "Débito").
+📌 Requisitos previos
 
----
+Tener Node.js instalado (versión 12 o superior).
 
-## Instrucciones
+📥 Instalación
 
-1. **Repositorio Base:**  
-   Clona o haz un fork del repositorio base disponible en:  
-   `https://github.com/codeableorg/interbank-academy-25`
+Clonar este repositorio:
 
-2. **Entrada de Datos:**  
-   La aplicación deberá leer un archivo CSV. Ejemplo de contenido:
+git clone https://github.com/tu-usuario/procesador-transacciones-bancarias.git
+cd procesador-transacciones-bancarias
 
-   ```
-   id,tipo,monto
-   1,Crédito,100.00
-   2,Débito,50.00
-   3,Crédito,200.00
-   4,Débito,75.00
-   5,Crédito,150.00
-   ```
+Instalar las dependencias:
 
-3. **Salida del Programa:**  
-   La aplicación debe mostrar el reporte final en la terminal.  
-   Ejemplo de salida:
+npm install
 
-   ```
-   Reporte de Transacciones
-   ---------------------------------------------
-   Balance Final: 325.00
-   Transacción de Mayor Monto: ID 3 - 200.00
-   Conteo de Transacciones: Crédito: 3 Débito: 2
-   ```
+▶️ Ejecución
 
-4. **Lenguaje de Programación:**  
-   Utiliza el lenguaje de tu preferencia. Opciones recomendadas:
+Para procesar un archivo CSV de transacciones:
 
-   - Python
-   - Java
-   - C#
-   - JavaScript (Node.js)
+node src/index.js ruta/al/archivo.csv
 
-5. **README del Proyecto:**  
-   Incluye un archivo `README.md` con la siguiente estructura:
+Por ejemplo:
 
-   - **Introducción:** Breve descripción del reto y su propósito.
-   - **Instrucciones de Ejecución:** Cómo instalar dependencias y ejecutar la aplicación.
-   - **Enfoque y Solución:** Lógica implementada y decisiones de diseño.
-   - **Estructura del Proyecto:** Archivos y carpetas principales.
+node src/index.js data/transacciones.csv
 
-6. **Documentación y Calidad del Código:**
-   - Código bien documentado y fácil de leer.
-   - Comentarios explicando pasos clave y lógica del programa.
+Alternativamente, puedes usar el script npm configurado:
+
+npm start data/transacciones.csv
+
+📂 Formato del Archivo CSV
+
+El archivo CSV debe tener la siguiente estructura:
+
+id,tipo,monto
+1,Crédito,100.00
+2,Débito,50.00
+
+Donde:
+
+id: Identificador único de la transacción.
+
+tipo: Tipo de transacción ("Crédito" o "Débito").
+
+monto: Cantidad de la transacción en formato decimal.
+
+🏗️ Enfoque y Solución
+
+La solución implementada se basa en un enfoque simple pero efectivo para procesar datos financieros:
+
+📌 Lectura y Procesamiento
+
+Lectura asíncrona: Se utiliza csv-parser para leer el archivo CSV de manera eficiente.
+
+Promesas y async/await: Se manejan operaciones asíncronas de manera clara y legible.
+
+📊 Algoritmo Principal
+
+Recopilación de datos: Se leen todas las transacciones del archivo CSV.
+
+Procesamiento por tipo:
+
+Los créditos aumentan el balance.
+
+Los débitos disminuyen el balance.
+
+Se incrementa el contador correspondiente según el tipo.
+
+Identificación de máximos: Se mantiene un registro de la transacción con el monto más alto.
+
+📜 Generación de Reporte
+
+Se formatea la salida siguiendo exactamente el formato especificado, con números decimales correctamente presentados.
+
+⚠️ Manejo de Errores
+
+Se han implementado validaciones para:
+
+Verificar que se proporcione la ruta del archivo.
+
+Comprobar que el archivo existe y es accesible.
+
+Manejar errores durante la lectura y procesamiento.
+
+📁 Estructura del Proyecto
+
+procesador-transacciones-bancarias/
+├── 📂 src/
+│   └── 📝 index.js          # Código principal con la lógica de procesamiento
+├── 📂 data/
+│   └── 📄 transacciones.csv # Archivo de ejemplo con transacciones
+├── ⚡ cli.js                # Punto de entrada para la CLI
+├── 📦 package.json          # Configuración del proyecto y dependencias
+└── 📖 README.md             # Este archivo de documentación
+
+📌 Notas Adicionales
+
+📌 El archivo CSV debe contener las siguientes columnas: id, tipo, monto.
+
+🛑 Se han implementado validaciones para evitar errores con datos incompletos o mal formateados.
+
+⚠️ Se muestran advertencias en caso de encontrar registros inválidos.
+
+🎯 Este proyecto es un ejemplo práctico de cómo manejar archivos CSV en Node.js y estructurar una aplicación CLI eficiente y modular.
